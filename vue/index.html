@@ -5,6 +5,32 @@
  <title>Title</title>
 </head>
 <body>
+<script>
+	// 自执行函数的作用域
+	// const bb = {
+	// 	aa: 11,
+	// 	cc() {
+	// 		return () => {
+	// 			console.log(this)
+	// 		}
+	// 	}
+	// }
+	// console.log(bb)
+	// bb.cc()()
+	const arrFuncs = [];
+	for (var i = 0; i < 5; i++) {
+		const aa = function a(i) {
+			return function f() {
+				console.log(i)
+			}
+		}
+		arrFuncs.push(aa(i));
+	}
+	console.log(arrFuncs); // i is 5
 
+	for (let i = 0; i < arrFuncs.length; i++) {
+		(arrFuncs[i]()) // 都打印 5
+	}
+</script>
 </body>
 </html>
